@@ -25,21 +25,30 @@ namespace MvcDenemeHello.Controllers
              return View();
          } */
         [HttpPost]
-        public IActionResult Index(IFormCollection ogr)
+        public IActionResult Index(Ogrenci ogr)
         {
 
             //var ad = form.Ad.ToString();
             //var soyad = form.Soyad.ToString();
-            Ogrenci og = new Ogrenci();
-            og.Ad= ogr["OgrenciAd"].ToString();
-            og.Soyad = ogr["OgrenciSoyad"].ToString();
-            og.Yas = int.Parse(ogr["OgrenciYas"]);
+            //Ogrenci og = new Ogrenci();
+            //og.Ad= ogr["OgrenciAd"].ToString();
+            //og.Soyad = ogr["OgrenciSoyad"].ToString();
+            //og.Yas = int.Parse(ogr["OgrenciYas"]);
             using (var ctx=new OkulContext())
                 {
-                    ctx.Ogrenciler.Add(og);
+                    ctx.Ogrenciler.Add(ogr);
                     ctx.SaveChanges();
                 }
             
+            //using (var ctx = new OkulContext())
+            //{
+            //    var lst = ctx.Ogrenciler.ToList();
+            //    foreach (var item in lst)
+            //    {
+            //        Console.WriteLine(item.ToString());
+            //        Console.ReadKey();
+            //    }
+            //} 
             return View();
         }
     }
